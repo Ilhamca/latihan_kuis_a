@@ -18,7 +18,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Login gagal: Username atau Password salah'),
+            content: Text('Link tidak dapat dibuka'),
             duration: Duration(seconds: 2),
           ),
         );
@@ -38,26 +38,29 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.fromLTRB(12.0, 10, 12.0, 0),
                 child: Text(
                   '${widget.movie.title} (${widget.movie.year})',
-                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.left,
                 ),
               ),
 
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.fromLTRB(12.0, 1, 12.0, 0),
                 child: Text(
                   'Directed by ${widget.movie.director}',
                   textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 12.0),
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    color: const Color.fromARGB(255, 129, 129, 129),
+                  ),
                   textDirection: TextDirection.ltr,
                 ),
               ),
 
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.fromLTRB(12.0, 5, 12.0, 0),
                 child: Text(
                   widget.movie.synopsis,
                   style: TextStyle(fontSize: 12.0),
@@ -66,23 +69,34 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               ),
 
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.fromLTRB(12.0, 7, 12.0, 0),
                 child: Text(
-                  'Genre: ${widget.movie.genre}',
-                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.left,
-                ),
-              ),
-
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Rating: ${widget.movie.rating}',
-                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                  'Genre : ${widget.movie.genre} \n'
+                  'Cast   : ${widget.movie.casts.join(', ')}',
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.left,
                 ),
               ),
             ],
+          ),
+
+          Padding(
+            padding: EdgeInsets.fromLTRB(12.0, 10, 12.0, 0),
+            child: RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  fontSize: 26.0,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                children: [
+                  WidgetSpan(
+                    child: Icon(Icons.star, color: Colors.orange, size: 30),
+                  ),
+                  TextSpan(text: ' Rated ${widget.movie.rating} / 10'),
+                ],
+              ),
+            ),
           ),
 
           SizedBox(height: 8.0),
@@ -94,15 +108,18 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   }
 
   Widget _wikiButton() {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-        backgroundColor: Colors.grey,
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.9,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+          backgroundColor: Colors.grey,
+        ),
+        onPressed: () {
+          _launchURL();
+        },
+        child: Text('Go to Wikipedia', style: TextStyle(color: Colors.black)),
       ),
-      onPressed: () {
-        _launchURL();
-      },
-      child: Text('Go to Wikipedia', style: TextStyle(color: Colors.black)),
     );
   }
 

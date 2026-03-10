@@ -67,17 +67,17 @@ class _LoginPageState extends State<LoginPage> {
     bool obscure = false,
   }) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
       width: MediaQuery.of(context).size.width * 0.8,
       child: TextField(
         controller: controller,
         decoration: InputDecoration(
           hintText: hint,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
+            borderRadius: BorderRadius.all(Radius.circular(0)),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
+            borderRadius: BorderRadius.all(Radius.circular(0)),
             borderSide: BorderSide(
               color: isLoginFailed ? Colors.red : Colors.blue,
             ),
