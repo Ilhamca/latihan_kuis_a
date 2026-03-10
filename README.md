@@ -33,4 +33,5 @@ a white background with a gray or black outline. When clicked, it should change 
 a blue outline.
 
 Wireframe Example: 
+
 <img src="docs/images/wireframe_example.png" alt="Wireframe Example" width="600">
