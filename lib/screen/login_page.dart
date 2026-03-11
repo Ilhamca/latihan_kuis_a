@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latihan_kuis_a/models/user_model.dart';
-import 'package:latihan_kuis_a/screen/movie_list_page.dart';
+import 'package:latihan_kuis_a/screen/food_list_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -24,7 +24,12 @@ class _LoginPageState extends State<LoginPage> {
         isLoggedIn = true;
         isLoginFailed = false;
       });
-      Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => MovieListPage(username: username)));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => FoodListPage(username: username),
+        ),
+      );
     } else {
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
@@ -52,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           SizedBox(height: 8),
           Text(
-            'Welcome back to MiniLens!',
+            'Masuk untuk melihat daftar makanan.',
             style: TextStyle(fontSize: 14, color: Colors.grey),
           ),
         ],
@@ -121,15 +126,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    /*
-      buatlah tampilan login sederhana dengan menggunakan widget TextField untuk input username dan password, serta ElevatedButton untuk tombol login.
-      - TextField untuk username dengan hint text "Username"
-      - TextField untuk password dengan hint text "Password" dan obscureText true
-      - ElevatedButton dengan text "Login" yang ketika ditekan akan menampilkan snackbar dengan pesan
-        "Login berhasil" jika username dan password tidak kosong, atau "Login gagal" jika salah satu atau kedua field kosong.
-      - jika login berhasil, navigasikan ke halaman MovieListPage (buat halaman MovieListPage 
-     */
-
     return Scaffold(
       body: Center(
         child: Column(
